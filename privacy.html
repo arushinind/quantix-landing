@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Quantix</title>
+    <meta name="description" content="Privacy Policy for Quantix Clinic Management System.">
+    
+    <!-- Aesthetic Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23050505'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%233b82f6'/%3E%3Ccircle cx='12' cy='12' r='11' stroke='%23333' stroke-width='1' fill='none'/%3E%3C/svg%3E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['"Manrope"', 'sans-serif'],
+                        display: ['"Syne"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#3b82f6',
+                            glow: '#60a5fa',
+                        },
+                        dark: '#050505',
+                        panel: '#0f0f0f'
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #ffffff05 1px, transparent 1px), linear-gradient(to bottom, #ffffff05 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --cursor-size: 30px;
+        }
+
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #030303;
+            color: #ffffff;
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND LAYERS */
+        #aurora-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 200vw; height: 200vh;
+            background-size: 60px 60px;
+            background-image: var(--tw-gradient-stops);
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9990;
+            opacity: 0.04;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* CURSOR */
+        .cursor-dot {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            width: 8px; height: 8px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: exclusion;
+        }
+        .cursor-lens {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            width: 60px; height: 60px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            backdrop-filter: blur(1px);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cursor-lens.hovered {
+            width: 90px; height: 90px;
+            background: rgba(255,255,255,0.02);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* TEXT EFFECTS */
+        .gradient-text {
+            background: linear-gradient(to right, #fff, #a5b4fc, #fff);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+        
+        /* Typography overrides for legal text */
+        .legal-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #d1d5db;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .legal-content p, .legal-content ul {
+            font-family: 'Manrope', sans-serif;
+            color: #9ca3af;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .legal-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .legal-content li {
+            margin-bottom: 0.5rem;
+        }
+        .legal-content a {
+            color: #3b82f6;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 0; }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <div class="noise"></div>
+    <div class="cyber-grid bg-grid-pattern"></div>
+    <canvas id="aurora-canvas"></canvas>
+
+    <!-- CURSOR -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-lens"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 mix-blend-difference text-white transition-transform duration-300" id="navbar">
+        <div class="flex justify-between items-center max-w-[1600px] mx-auto">
+            <a href="index.html" class="text-xl font-display font-bold tracking-tighter hover-target" data-text="QUANTIX.">QUANTIX.</a>
+            
+            <div class="hidden md:flex items-center gap-1 bg-white/5 backdrop-blur-md px-1 py-1 rounded-full border border-white/10 shadow-lg">
+                <a href="index.html#features" class="px-6 py-2 rounded-full text-xs font-sans font-medium uppercase hover:bg-white hover:text-black transition-all duration-300 hover-target">Features</a>
+                <a href="index.html#contact" class="px-6 py-2 rounded-full text-xs font-sans font-medium uppercase hover:bg-white hover:text-black transition-all duration-300 hover-target">Contact</a>
+            </div>
+
+            <div class="hover-target">
+                <a href="https://app.getquantix.com" class="px-6 py-2 bg-white text-black rounded-full font-sans text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-40 pb-32 px-6">
+        
+        <!-- HEADER -->
+        <div class="max-w-[900px] mx-auto text-center mb-20">
+            <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 gradient-text">Privacy Policy</h1>
+            <p class="text-gray-400 font-mono text-xs uppercase tracking-widest">Last Updated: February 2026</p>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="max-w-[900px] mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm legal-content shadow-2xl">
+            
+            <p>At <strong>Quantix</strong> ("we", "our", or "us"), we are committed to protecting your privacy and ensuring the security of your data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <strong>https://app.getquantix.com</strong> and use our clinic management software services (the "Service").</p>
+            <p>Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site or use our services.</p>
+
+            <h2>1. Information We Collect</h2>
+            <p>We collect information that you voluntarily provide to us when you register on the website, express an interest in obtaining information about us or our products and services, or otherwise when you contact us.</p>
+            
+            <h3>Personal Information</h3>
+            <ul>
+                <li><strong>Identity Data:</strong> Name, Clinic/Practice Name, Medical Registration Number (for verification).</li>
+                <li><strong>Contact Data:</strong> Phone number, Email address, WhatsApp Business number.</li>
+                <li><strong>Payment Data:</strong> We do not store credit card details. Payment processing is handled by our third-party payment processors.</li>
+            </ul>
+
+            <h3>Usage & System Data</h3>
+            <ul>
+                <li><strong>Log Data:</strong> IP address, browser type, operating system, and access times.</li>
+                <li><strong>Clinic Data:</strong> Appointment schedules, token generation logs, and OPD flow statistics generated through your use of the Service.</li>
+                <li><strong>Patient Data:</strong> Data regarding your patients that you input into the system. You retain ownership of all patient data; we process it solely to provide the Service to you.</li>
+            </ul>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>We use the information we collect or receive to:</p>
+            <ul>
+                <li><strong>Facilitate Account Creation and Logon process:</strong> To manage your account and keep it secure.</li>
+                <li><strong>Deliver Services:</strong> To provide WhatsApp booking automation, live token display, and queue management features.</li>
+                <li><strong>Send Administrative Information:</strong> To send you product, service, and new feature information and/or information about changes to our terms, conditions, and policies.</li>
+                <li><strong>Protect Our Services:</strong> For fraud monitoring and prevention.</li>
+                <li><strong>Enforce our Terms:</strong> To enforce our terms, conditions, and policies for business purposes, to comply with legal and regulatory requirements or in connection with our contract.</li>
+            </ul>
+
+            <h2>3. Data Sharing & Disclosure</h2>
+            <p>We generally do not share, sell, or rent your personal data to third parties. We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations.</p>
+            <ul>
+                <li><strong>Service Providers:</strong> We may share your data with third-party vendors, service providers, contractors, or agents who perform services for us or on our behalf and require access to such information to do that work (e.g., Cloud hosting via AWS/Google Cloud, WhatsApp Business API providers).</li>
+                <li><strong>Legal Obligations:</strong> We may disclose your information where we are legally required to do so in order to comply with applicable law, governmental requests, a judicial proceeding, court order, or legal process.</li>
+            </ul>
+
+            <h2>4. WhatsApp Data Compliance</h2>
+            <p>Our service utilizes the WhatsApp Business API. By using Quantix, you acknowledge that appointment confirmations and token updates will be sent via WhatsApp. We adhere strictly to WhatsApp's Business Policies and Commerce Policies. We do not use WhatsApp data for ad targeting or any unauthorized purpose.</p>
+
+            <h2>5. Data Security</h2>
+            <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+
+            <h2>6. Patient Confidentiality</h2>
+            <p>We understand the sensitivity of medical data. Quantix is designed to be a data processor. You, the Doctor/Clinic, are the data controller. We do not access patient medical records unless explicitly required for technical support and authorized by you. We do not sell patient data.</p>
+
+            <h2>7. User Rights</h2>
+            <p>Depending on your location, you may have the following rights regarding your data:</p>
+            <ul>
+                <li>The right to request access to your personal data.</li>
+                <li>The right to request correction of inaccurate data.</li>
+                <li>The right to request deletion of your data ("Right to be Forgotten").</li>
+            </ul>
+            <p>To exercise these rights, please contact us at the email provided below.</p>
+
+            <h2>8. Contact Us</h2>
+            <p>If you have questions or comments about this policy, or wish to delete your account and data, you may contact our Data Protection Officer (DPO) at:</p>
+            <p>
+                <strong>Email:</strong> <a href="mailto:support@getquantix.com">support@getquantix.com</a><br>
+                <strong>Address:</strong> Quantix HQ, Bengaluru, Karnataka, India.
+            </p>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050505] text-center py-20 border-t border-white/5 relative z-10">
+        <div class="max-w-[1600px] mx-auto w-full px-4">
+            <h2 class="font-display text-4xl md:text-6xl font-bold text-[#1a1a1a] leading-none select-none">QUANTIX</h2>
+            <p class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-4">Trusted by Doctors Across India</p>
+            <div class="flex justify-center gap-8 mt-12 text-xs font-mono text-gray-600 uppercase flex-wrap">
+                <a href="privacy.html" class="text-brand-500 hover:text-white transition-colors hover-target">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-brand-500 transition-colors hover-target">Terms of Service</a>
+                <a href="mailto:support@getquantix.com" class="hover:text-brand-500 transition-colors hover-target">Contact Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- VISUAL EFFECTS ---
+        window.addEventListener('load', () => {
+             // Lenis Smooth Scroll
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+                function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+                requestAnimationFrame(raf);
+            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            
+            initAurora();
+            initCustomCursor();
+        });
+
+        // Aurora Effect
+        function initAurora() {
+            const canvas = document.getElementById('aurora-canvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height, time = 0;
+            function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize);
+            resize();
+            function draw() {
+                ctx.fillStyle = '#030303';
+                ctx.fillRect(0, 0, width, height);
+                time += 0.003;
+                
+                const gradient1 = ctx.createRadialGradient(width*0.2 + Math.sin(time)*100, height*0.3 + Math.cos(time*1.2)*100, 0, width*0.2 + Math.sin(time)*100, height*0.3 + Math.cos(time*1.2)*100, 900);
+                gradient1.addColorStop(0, 'rgba(59, 130, 246, 0.12)');
+                gradient1.addColorStop(1, 'transparent');
+
+                const gradient2 = ctx.createRadialGradient(width*0.8 - Math.sin(time*0.8)*120, height*0.7 - Math.cos(time)*120, 0, width*0.8 - Math.sin(time*0.8)*120, height*0.7 - Math.cos(time)*120, 800);
+                gradient2.addColorStop(0, 'rgba(124, 58, 237, 0.08)');
+                gradient2.addColorStop(1, 'transparent');
+
+                ctx.globalCompositeOperation = 'screen';
+                ctx.fillStyle = gradient1; ctx.fillRect(0, 0, width, height);
+                ctx.fillStyle = gradient2; ctx.fillRect(0, 0, width, height);
+                ctx.globalCompositeOperation = 'source-over';
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // Cursor Effect
+        function initCustomCursor() {
+            const cursorLens = document.querySelector('.cursor-lens');
+            const cursorDot = document.querySelector('.cursor-dot');
+            
+            document.addEventListener('mousemove', (e) => {
+                // Simple follow for performance on text heavy pages
+                if(cursorDot) cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+                if(cursorLens) cursorLens.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+            });
+            
+            document.querySelectorAll('.hover-target').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorLens.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursorLens.classList.remove('hovered'));
+            });
+        }
+    </script>
+</body>
+</html>

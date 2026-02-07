@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Quantix</title>
+    <meta name="description" content="Terms of Service for Quantix Clinic Management System.">
+    
+    <!-- Aesthetic Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23050505'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%233b82f6'/%3E%3Ccircle cx='12' cy='12' r='11' stroke='%23333' stroke-width='1' fill='none'/%3E%3C/svg%3E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['"Manrope"', 'sans-serif'],
+                        display: ['"Syne"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#3b82f6',
+                            glow: '#60a5fa',
+                        },
+                        dark: '#050505',
+                        panel: '#0f0f0f'
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #ffffff05 1px, transparent 1px), linear-gradient(to bottom, #ffffff05 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --cursor-size: 30px;
+        }
+
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #030303;
+            color: #ffffff;
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND LAYERS */
+        #aurora-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 200vw; height: 200vh;
+            background-size: 60px 60px;
+            background-image: var(--tw-gradient-stops);
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9990;
+            opacity: 0.04;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* CURSOR */
+        .cursor-dot {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            width: 8px; height: 8px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: exclusion;
+        }
+        .cursor-lens {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            width: 60px; height: 60px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            backdrop-filter: blur(1px);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cursor-lens.hovered {
+            width: 90px; height: 90px;
+            background: rgba(255,255,255,0.02);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* TEXT EFFECTS */
+        .gradient-text {
+            background: linear-gradient(to right, #fff, #a5b4fc, #fff);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+        
+        /* Typography overrides for legal text */
+        .legal-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #d1d5db;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .legal-content p, .legal-content ul, .legal-content ol {
+            font-family: 'Manrope', sans-serif;
+            color: #9ca3af;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .legal-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .legal-content ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+        .legal-content li {
+            margin-bottom: 0.5rem;
+        }
+        .legal-content a {
+            color: #3b82f6;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 0; }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <div class="noise"></div>
+    <div class="cyber-grid bg-grid-pattern"></div>
+    <canvas id="aurora-canvas"></canvas>
+
+    <!-- CURSOR -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-lens"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 mix-blend-difference text-white transition-transform duration-300" id="navbar">
+        <div class="flex justify-between items-center max-w-[1600px] mx-auto">
+            <a href="index.html" class="text-xl font-display font-bold tracking-tighter hover-target" data-text="QUANTIX.">QUANTIX.</a>
+            
+            <div class="hidden md:flex items-center gap-1 bg-white/5 backdrop-blur-md px-1 py-1 rounded-full border border-white/10 shadow-lg">
+                <a href="index.html#features" class="px-6 py-2 rounded-full text-xs font-sans font-medium uppercase hover:bg-white hover:text-black transition-all duration-300 hover-target">Features</a>
+                <a href="index.html#contact" class="px-6 py-2 rounded-full text-xs font-sans font-medium uppercase hover:bg-white hover:text-black transition-all duration-300 hover-target">Contact</a>
+            </div>
+
+            <div class="hover-target">
+                <a href="https://app.getquantix.com" class="px-6 py-2 bg-white text-black rounded-full font-sans text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-40 pb-32 px-6">
+        
+        <!-- HEADER -->
+        <div class="max-w-[900px] mx-auto text-center mb-20">
+            <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 gradient-text">Terms of Service</h1>
+            <p class="text-gray-400 font-mono text-xs uppercase tracking-widest">Last Updated: February 2026</p>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="max-w-[900px] mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm legal-content shadow-2xl">
+            
+            <p>Welcome to <strong>Quantix</strong>. These Terms of Service ("Terms") govern your use of the Quantix website, the Quantix clinic management software, and any related services (collectively, the "Service") provided by us.</p>
+            <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you may not access the Service.</p>
+
+            <h2>1. Service Description</h2>
+            <p>Quantix is a SaaS (Software as a Service) platform designed for doctors and clinics to automate OPD operations. Key features include WhatsApp-based appointment booking, live token display systems, and queue management analytics. We provide the tools to manage your practice, but we do not provide medical services ourselves.</p>
+
+            <h2>2. Accounts and Registration</h2>
+            <p>To use the Service, you must register for an account. You agree to provide accurate, current, and complete information during the registration process. You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password.</p>
+
+            <h2>3. Acceptable Use</h2>
+            <p>You agree not to misuse the Service. For example, you must not:</p>
+            <ul>
+                <li>Use the Service for any unlawful purpose or to solicit others to perform or participate in any unlawful acts.</li>
+                <li>Upload or transmit viruses or any other type of malicious code.</li>
+                <li>Attempt to bypass or break any security mechanism on any of the Services.</li>
+                <li>Send unsolicited spam messages via the WhatsApp integration features.</li>
+            </ul>
+
+            <h2>4. Payment and Subscription</h2>
+            <p>Certain aspects of the Service may be provided for a fee or other charge. If you elect to use paid aspects of the Service, you agree to the pricing and payment terms as we may update them from time to time. All fees are non-refundable unless otherwise stated in writing.</p>
+
+            <h2>5. Limitation of Liability</h2>
+            <p><strong>Quantix is a technology tool, not a medical device or service.</strong></p>
+            <p>We do not provide medical advice, diagnosis, or treatment. You acknowledge that you are solely responsible for the medical care of your patients. In no event shall Quantix, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of the Service.</p>
+
+            <h2>6. Data Ownership</h2>
+            <p>You retain all rights, title, and interest in and to the data you input into the Service ("Client Data"). You grant Quantix a non-exclusive, worldwide, royalty-free license to use, copy, transmit, sub-license, index, store, and display Client Data solely to the extent necessary to provide the Service to you.</p>
+
+            <h2>7. Termination</h2>
+            <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Service will immediately cease.</p>
+
+            <h2>8. Service Availability</h2>
+            <p>We strive to keep the Service up and running; however, all online services suffer occasional disruptions and outages. Quantix is not liable for any disruption or loss you may suffer as a result.</p>
+
+            <h2>9. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</p>
+
+            <h2>10. Changes to Terms</h2>
+            <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect.</p>
+
+            <h2>11. Contact Us</h2>
+            <p>If you have any questions about these Terms, please contact us at:</p>
+            <p>
+                <strong>Email:</strong> <a href="mailto:arush.techai@gmail.com">arush.techai@gmail.com</a>
+            </p>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050505] text-center py-20 border-t border-white/5 relative z-10">
+        <div class="max-w-[1600px] mx-auto w-full px-4">
+            <h2 class="font-display text-4xl md:text-6xl font-bold text-[#1a1a1a] leading-none select-none">QUANTIX</h2>
+            <p class="text-gray-500 text-xs font-mono uppercase tracking-widest mt-4">Trusted by Doctors Across India</p>
+            <div class="flex justify-center gap-8 mt-12 text-xs font-mono text-gray-600 uppercase flex-wrap">
+                <a href="privacy.html" class="hover:text-brand-500 transition-colors hover-target">Privacy Policy</a>
+                <a href="terms.html" class="text-brand-500 hover:text-white transition-colors hover-target">Terms of Service</a>
+                <a href="mailto:arush.techai@gmail.com" class="hover:text-brand-500 transition-colors hover-target">Contact Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- VISUAL EFFECTS ---
+        window.addEventListener('load', () => {
+             // Lenis Smooth Scroll
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+                function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+                requestAnimationFrame(raf);
+            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            
+            initAurora();
+            initCustomCursor();
+        });
+
+        // Aurora Effect
+        function initAurora() {
+            const canvas = document.getElementById('aurora-canvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height, time = 0;
+            function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize);
+            resize();
+            function draw() {
+                ctx.fillStyle = '#030303';
+                ctx.fillRect(0, 0, width, height);
+                time += 0.003;
+                
+                const gradient1 = ctx.createRadialGradient(width*0.2 + Math.sin(time)*100, height*0.3 + Math.cos(time*1.2)*100, 0, width*0.2 + Math.sin(time)*100, height*0.3 + Math.cos(time*1.2)*100, 900);
+                gradient1.addColorStop(0, 'rgba(59, 130, 246, 0.12)');
+                gradient1.addColorStop(1, 'transparent');
+
+                const gradient2 = ctx.createRadialGradient(width*0.8 - Math.sin(time*0.8)*120, height*0.7 - Math.cos(time)*120, 0, width*0.8 - Math.sin(time*0.8)*120, height*0.7 - Math.cos(time)*120, 800);
+                gradient2.addColorStop(0, 'rgba(124, 58, 237, 0.08)');
+                gradient2.addColorStop(1, 'transparent');
+
+                ctx.globalCompositeOperation = 'screen';
+                ctx.fillStyle = gradient1; ctx.fillRect(0, 0, width, height);
+                ctx.fillStyle = gradient2; ctx.fillRect(0, 0, width, height);
+                ctx.globalCompositeOperation = 'source-over';
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // Cursor Effect
+        function initCustomCursor() {
+            const cursorLens = document.querySelector('.cursor-lens');
+            const cursorDot = document.querySelector('.cursor-dot');
+            
+            document.addEventListener('mousemove', (e) => {
+                if(cursorDot) cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+                if(cursorLens) cursorLens.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+            });
+            
+            document.querySelectorAll('.hover-target').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorLens.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursorLens.classList.remove('hovered'));
+            });
+        }
+    </script>
+</body>
+</html>
